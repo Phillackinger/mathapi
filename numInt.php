@@ -5,15 +5,17 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 $verfahren = $_GET['ver'];
 $n = $_GET['n'];
-$function = $_GET['fun'];
+$functionInput = $_GET['func'];
 $a = $_GET['a'];
 $b = $_GET['b'];
+$_['sum'] = 0;
 
 
 
-if(isset($function)){
-    function f($x,$function){
-        $functionset = "return" . $function . ";"; 
+
+if(isset($functionInput)){
+    function f($function,$x){
+        $functionset = "return " . $function . ";";
         return eval($functionset);
     }
     if(empty($n)){
@@ -45,26 +47,26 @@ if(isset($function)){
             $deltaX = ($b-$a)/$n;
             $sum = 0;
 
-            for($i = $a; $i <= $b; $i++ ){
+            for($i = $a; $i <= $b; $i = $i + $deltaX ){
                 if($i == $a || $i == $b){
-                $sum + f($i,$function);
+                    $_['sum'] = $_['sum'] + f($functionInput,$i);
+                }else{
+                    $_['sum'] = $_['sum'] + 2*(f($functionInput,$i));
                 }
-
-                $sum + 2*(f($i,$function));
             }
+
+            $finalSum = $deltaX/2 * $_['sum']; 
 
             echo json_encode(array(
                 "code"=>200,
-                "result"=>$sum
+                "result"=>$finalsum
             ));
 
             die();
         }
 
-        trapez($function, $n, $a, $b);
+        trapez($functionInput, $n, $a, $b);
     }
-
-
 
 }else{
     echo json_encode(array(
