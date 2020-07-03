@@ -17,6 +17,7 @@ $json = array(
     "code" => 200
 );
 $toggle = false;
+$counter = 0;
 
 
 
@@ -44,7 +45,7 @@ if(isset($functionInput)){
     if(empty($b)){
         echo json_encode(array(
             "code"=>401,
-            "message"=>"Parameter a is missing"
+            "message"=>"Parameter b is missing"
         ));
         die();
     }
@@ -66,36 +67,30 @@ if(isset($functionInput)){
 
     if(in_array($verfahren, $allowedKepplerNames)){
 
-        
+        $keppler = (($b-$a)/6)*(f($functionInput, $a)+ 4*f($functionInput, (($a+$b)/2)) + f($functionInput, $b));
+        $json['keppler'] = $keppler;
 
     }
 
     if(in_array($verfahren, $allowedSimpsonNames)){
-        for($i = $a; $i <= $b; $i = $i + $deltaX ){
-            if($i == $a || $i == $b){
+        for($i = $a; $i <= $b; $i = $i + $deltaX, $counter++){
+            if($i == $a || $i == $b){ //first or last element *1
                 $_['sum'] = $_['sum'] + f($functionInput,$i);
             }
-            elseif($toggle){
+            elseif($counter%2 != 0){ //odd element *4
                 $_['sum'] = $_['sum'] + 4*(f($functionInput,$i));
-                $toggle = true;
             }
-            elseif(!$toggle)
+            elseif($counter%2 == 0) //even element *2
                 $_['sum'] = $_['sum'] + 2*(f($functionInput,$i));
-                $toggle = false;
         }
 
         $simpson = $deltaX/3 * $_['sum'];
         $json['simpson'] = $simpson;
         $_['sum'] = 0;
+        $counter = 0;
     }
-
-
-
-    
 
     echo json_encode($json);
 }
-
-
 
 ?>
