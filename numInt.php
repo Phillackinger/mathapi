@@ -67,7 +67,7 @@ if(isset($functionInput)){
 
     if(in_array($verfahren, $allowedKepplerNames)){
 
-        $keppler = (($b-$a)/6)*(f($functionInput, $a)+ 4*f($functionInput, (($a+$b)/2)) + f($functionInput, $b));
+        $keppler = ((($b-$a)/6)*(f($functionInput, $a)+ 4*f($functionInput, (($a+$b)/2)) + f($functionInput, $b)));
         $json['keppler'] = $keppler;
 
     }
