@@ -4,47 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MatheApi</title>
+    <style>
+    </style>
 </head>
 <body style="margin: 10px;">
     <h1>Numerische Integrationsverfahren</h1>
     
-    <form action="" method="post">
-    
+    <form action="" method="post" class="">
+    <div class="form-group">
     Funktionen müssen in PHP-Syntax angegeben werden: z.B. x^4 => $x**4
     <br>
 
-    <table>
+    <table class="table table-sm">
+    <div class="form-group">
         <tr>
             <td>Funktion: </td>
-            <td><input type="text" name="func"><br></td>
+            <td><input type="text" name="func" class="form-control"><br></td>
         </tr>
         <tr>
             <td>Verfahren: </td>
-            <td><input type="text" name="ver"><br></td>
+            <td><input type="text" name="ver" class="form-control"><br></td>
         </tr>
         <tr>
             <td>Genauigkeit N: </td>
-            <td><input type="text" name="n"><br></td>
+            <td><input type="text" name="n" class="form-control"><br></td>
         </tr>
         <tr>
             <td>Integrationsgrenze A: </td>
-            <td><input type="text" name="a"><br></td>
+            <td><input type="text" name="a" class="form-control"><br></td>
         </tr>
         <tr>
             <td>Integrationsgrenze B: </td>
-            <td><input type="text" name="b"><br></td>
+            <td><input type="text" name="b" class="form-control"><br></td>
+        </tr>
+    </div>
+    <div class="form-group">
+        <tr>
+            <td>Kreditkartennummer: </td>
+            <td><input type="text" name="credit card" class="form-control"><br></td>
         </tr>
         <tr>
-            <td><input type="submit"></input></td>
+            <td>Ablaufdatum: </td>
+            <td><input type="text" name="date" class="form-control"><br></td>
+        </tr>
+        <tr>
+            <td>Sicherheitscode: </td>
+            <td><input type="text" name="code" class="form-control"><br></td>
+        </tr>
+        <tr>
+            <td><lable class="checkbox">No. I don't want to enter my <br>credit card details, take my soul instead: </lable></td>
+            <td><input type="checkbox" class="checkbox"><br></td>
+        </tr>
+    </div>
+        <tr>
+            <td><button type="submit" class="btn btn-primary mb-2">Rechne!</button></td>
         </tr>
     </table>
 
-    
-    
-    
-   
-    
-    
+    </div>
+
     </form>
 
     <?php
