@@ -9,6 +9,8 @@ $functionInput = $_GET['func'];
 $a = $_GET['a'];
 $b = $_GET['b'];
 $_['sum'] = 0;
+$debug = true;
+
 $deltaX = ($b-$a)/$n;
 $allowedTrapezNames = array("ALL","all","All","a","A","Trapez", "trapez", "Trap" , "trap", "T","t");
 $allowedKepplerNames = array("ALL","all","All","a","A","Keppler","keppler","Kep","kep","K","k","KEPPLER","KEP");
@@ -19,13 +21,20 @@ $json = array(
 $toggle = false;
 $counter = 0;
 
+function div($zähler, $nenner){
 
+    if($debug) echo "Divison: " . $zähler . " / " . $nenner;
+
+    return $zähler/$nenner;
+}
 
 
 if(isset($functionInput)){
     function f($function,$x){
         $functionset = "return " . $function . ";";
-        return eval($functionset);
+        $eval = eval($functionset);
+        if($debug) echo $eval;
+        return $eval;
     }
 
     if(empty($n)){

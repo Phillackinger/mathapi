@@ -1,70 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MatheApi</title>
-    <style>
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
-<body style="margin: 10px;">
-    <h1>Numerische Integrationsverfahren</h1>
-    
-    <form action="" method="post" class="">
-    <div class="form-group">
-    Funktionen müssen in PHP-Syntax angegeben werden: z.B. x^4 => $x**4
-    <br>
+<body> 
+    <div class="container">
+        <h1>Numerische Integrationsverfahren</h1>
+        <form method="post" class="form-horizontal">
+            <div class="input-group mb-3">
+                <lable for="func" class="control-label col-sm-2">Funktion: </lable>
+                <input type="text" name="func" id=func class="form-control">
+                <div id="funcHelpBlock" class="form-form-control  mbtext">>Funktionen müssen in PHP-Syntax angegeben werden: z.B. x^4 => $x**4</div>
+            </div>
+            <div class="input-group -3">
+                <lable for="ver" class="control-label col-sm-2">Verfahren: </lable>
+                <select type="text" name="ver" class="form-select">
+                    <option selected value="ALL">ALL</option>
+                    <option value="T">Trapez</option>
+                    <option value="K">Keppler</option>
+                    <option value="S">Simpson</option>
+                </select>
+            </div>
+            <div class="input-group form-group  mb-3">
+                <lable for="n" class="control-label col-sm-2">Genauigkeit N: </lable>
+                <input type="number" name="n" id="n" class="form-control">
+            </div>
+            <div class="input-group form-group  mb-3">
+                <lable for="a" class="control-label col-sm-2">Integrationsgrenze A: </lable>
+                <input type="number" name="a" id="a" class="form-control">
+            </div>
+            <div class="input-group form-group  mb-3">
+                <lable for="b" class="control-label col-sm-2">Integrationsgrenze B: </lable>
+                <input type="number" name="b" id="b" class="form-control">
+            </div>
+            <div class="input-group form-group  mb-3">
+                <lable for="credit-num" class="control-label col-sm-2">Kreditkartennummer: </lable>
+                <input type="text" name="credit card" id="credit-num" class="form-control" disabled>
+            </div>
+            <div class="input-group form-group  mb-3">
+                <lable for="credit-date" class="control-label col-sm-2">Ablaufdatum: </lable>
+                <input type="date" name="date" id="credit-date" class="form-control credit" disabled>
+            </div>
+            <div class="input-group form-group  mb-3">
+                <lable for="credit-code" class="control-label col-sm-2">Sicherheitscode: </lable>
+                <input type="number" name="code" id="credit-code" class="form-control credit" disabled>
+            </div>
+            <div class="input-group form-group  mb-3 form-check">
+                <input type="checkbox" name="soul" id="soul" class="form-check-input credit" checked>
+                <lable for="soul" class="control-label"><lable class="checkbox">No. I don't want to enter my credit card details, take my soul instead: </lable>
+            </div>
+            <div class="input-group form-group  mb-3">
+                <button type="submit" class="btn btn-primary">Rechne!</button>
+            </div>
 
-    <table class="table table-sm">
-    <div class="form-group">
-        <tr>
-            <td>Funktion: </td>
-            <td><input type="text" name="func" class="form-control"><br></td>
-        </tr>
-        <tr>
-            <td>Verfahren: </td>
-            <td><input type="text" name="ver" class="form-control"><br></td>
-        </tr>
-        <tr>
-            <td>Genauigkeit N: </td>
-            <td><input type="text" name="n" class="form-control"><br></td>
-        </tr>
-        <tr>
-            <td>Integrationsgrenze A: </td>
-            <td><input type="text" name="a" class="form-control"><br></td>
-        </tr>
-        <tr>
-            <td>Integrationsgrenze B: </td>
-            <td><input type="text" name="b" class="form-control"><br></td>
-        </tr>
+        </form>
     </div>
-    <div class="form-group">
-        <tr>
-            <td>Kreditkartennummer: </td>
-            <td><input type="text" name="credit card" class="form-control"><br></td>
-        </tr>
-        <tr>
-            <td>Ablaufdatum: </td>
-            <td><input type="text" name="date" class="form-control"><br></td>
-        </tr>
-        <tr>
-            <td>Sicherheitscode: </td>
-            <td><input type="text" name="code" class="form-control"><br></td>
-        </tr>
-        <tr>
-            <td><lable class="checkbox">No. I don't want to enter my <br>credit card details, take my soul instead: </lable></td>
-            <td><input type="checkbox" class="checkbox"><br></td>
-        </tr>
-    </div>
-        <tr>
-            <td><button type="submit" class="btn btn-primary mb-2">Rechne!</button></td>
-        </tr>
-    </table>
-
-    </div>
-
-    </form>
-
     <?php
         error_reporting(E_ALL ^ E_NOTICE);
 
@@ -97,8 +90,16 @@
 
 </body>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script>
+
+        document.getElementById('soul').onchange = function(){
+            document.getElementById('credit-num').disabled = this.checked;
+            document.getElementById('credit-date').disabled = this.checked;
+            document.getElementById('credit-code').disabled = this.checked;
+        }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
 </html>
